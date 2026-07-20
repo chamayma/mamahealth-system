@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const API = axios.create({
-  baseURL: 'http://localhost:8080/api/v1',
+  // baseURL: 'http://localhost:8080/api/v1',
+  baseURL: 'https://mamahealth-backend.onrender.com',
   headers: {
     'Content-Type': 'application/json',
   },
