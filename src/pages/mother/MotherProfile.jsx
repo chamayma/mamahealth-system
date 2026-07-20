@@ -268,18 +268,25 @@ const MotherProfile = () => {
                   />
                 </div>
 
-                <div className="col-md-6">
-                  <label className="form-label text-muted small" htmlFor="blood-input">Blood Group (e.g. A+, O-)</label>
-                  <input
-                    type="text"
+                  <label className="form-label text-muted small" htmlFor="blood-input">Blood Group</label>
+                  <select
                     id="blood-input"
-                    className="form-control form-control-custom"
-                    placeholder="e.g. A+"
+                    className="form-select form-control-custom text-white"
                     value={bloodGroup}
-                    onChange={(e) => setBloodGroup(e.target.value.toUpperCase())}
+                    onChange={(e) => setBloodGroup(e.target.value)}
                     required
-                  />
-                </div>
+                    style={{ background: '#1a152e' }}
+                  >
+                    <option value="">Select Blood Group</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
 
                 <div className="col-md-12">
                   <label className="form-label text-muted small" htmlFor="address-input">Home Address</label>

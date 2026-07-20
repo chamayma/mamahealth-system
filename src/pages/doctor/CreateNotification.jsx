@@ -115,7 +115,7 @@ const CreateNotification = () => {
                     ) : (
                       mothers.map((m) => (
                         <option key={m.id} value={m.id}>
-                          {m.fullName} (ID: {m.id}, Hospital: {m.hospitalName})
+                          {m.fullName}
                         </option>
                       ))
                     )}

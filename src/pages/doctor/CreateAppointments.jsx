@@ -16,7 +16,7 @@ const CreateAppointments = () => {
   const [purpose, setPurpose] = useState('')
   const [notes, setNotes] = useState('')
   const [loading, setLoading] = useState(false)
-  const [fetchingMothers, setFetchingMothers] = useState(true)
+  const [fetchingMo, setFetchingMothers] = useState(true)
 
   useEffect(() => {
     const fetchMothers = async () => {
@@ -159,7 +159,7 @@ const CreateAppointments = () => {
                     ) : (
                       mothers.map((m) => (
                         <option key={m.id} value={m.id}>
-                          {m.fullName} (ID: {m.id}, Hospital: {m.hospitalName})
+                          {m.fullName}
                         </option>
                       ))
                     )}

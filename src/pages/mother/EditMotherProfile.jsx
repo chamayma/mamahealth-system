@@ -128,12 +128,12 @@ const EditMotherProfile = () => {
       <div className="row justify-content-center">
         <div className="col-lg-8">
           <div className="premium-card">
-            
+
             {/* Header */}
             <div className="d-flex align-items-center justify-content-between border-bottom border-color pb-3 mb-4">
               <div className="d-flex align-items-center gap-3">
-                <button 
-                  className="btn btn-secondary-custom p-2" 
+                <button
+                  className="btn btn-secondary-custom p-2"
                   onClick={() => navigate('/mother/profile')}
                   type="button"
                 >

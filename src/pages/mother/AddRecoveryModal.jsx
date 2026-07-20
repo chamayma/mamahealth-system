@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { toast } from 'react-toastify'
 import { FaHeartbeat, FaTimes } from 'react-icons/fa'
 import API from '../../api.js'
@@ -55,9 +55,9 @@ const AddRecoveryModal = ({ show, onClose, onRefresh }) => {
   if (!show) return null
 
   return (
-    <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 1050 }}>
+    <div className="modal d-block" style={{ backgroundColor: 'rgb(255, 255, 255)', zIndex: 1050 }}>
       <div className="modal-dialog modal-dialog-centered modal-lg">
-        <div className="modal-content text-white" style={{ background: '#130f26', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
+        <div className="modal-content text-white" style={{ background: '#ffffff', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
           
           <div className="modal-header border-bottom border-color p-3 d-flex justify-content-between align-items-center">
             <h5 className="modal-title d-flex align-items-center gap-2" style={{ fontFamily: 'Outfit' }}>
