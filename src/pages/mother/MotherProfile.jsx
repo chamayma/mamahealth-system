@@ -268,6 +268,7 @@ const MotherProfile = () => {
                   />
                 </div>
 
+                <div className="col-md-6">
                   <label className="form-label text-muted small" htmlFor="blood-input">Blood Group</label>
                   <select
                     id="blood-input"
@@ -287,6 +288,7 @@ const MotherProfile = () => {
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                   </select>
+                </div>
 
                 <div className="col-md-12">
                   <label className="form-label text-muted small" htmlFor="address-input">Home Address</label>
