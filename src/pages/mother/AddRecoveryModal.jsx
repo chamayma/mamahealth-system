@@ -55,7 +55,7 @@ const AddRecoveryModal = ({ show, onClose, onRefresh }) => {
   if (!show) return null
 
   return (
-    <div className="modal d-block" style={{ backgroundColor: 'rgb(255, 255, 255)', zIndex: 1050 }}>
+    <div className="modal d-block" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: 1050 }}>
       <div className="modal-dialog modal-dialog-centered modal-lg">
         <div className="modal-content text-white" style={{ background: '#ffffff', border: '1px solid var(--border-color)', borderRadius: '16px' }}>
           
