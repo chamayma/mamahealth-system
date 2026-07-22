@@ -91,6 +91,11 @@ const Medication = () => {
                         <div className="text-muted small mb-2">
                           <strong>Prescribed By:</strong> {med.doctorName || 'Doctor'}
                         </div>
+                        {med.instructions && (
+                          <div className="text-muted small mb-2">
+                            <strong>Instructions:</strong> {med.instructions}
+                          </div>
+                        )}
 
                       </div>
                       <button
@@ -135,6 +140,9 @@ const Medication = () => {
                         <div><strong>Dosage:</strong> {med.dosage}</div>
                         <div><strong>Frequency:</strong> {med.frequency}</div>
                         <div><strong>Prescribed By:</strong> {med.doctorName || 'Doctor'}</div>
+                        {med.instructions && (
+                          <div><strong>Instructions:</strong> {med.instructions}</div>
+                        )}
                       </div>
                     </div>
                   </div>
