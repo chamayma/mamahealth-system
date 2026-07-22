@@ -29,7 +29,9 @@ API.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       // Token expired or invalid, clear and redirect to login
       localStorage.clear()
-      window.location.href = '/login'
+      // Use Vite's BASE_URL to correctly redirect on GitHub Pages (e.g. /mamahealth-system/login)
+      const baseUrl = import.meta.env.BASE_URL || '/'
+      window.location.href = baseUrl.endsWith('/') ? baseUrl + 'login' : baseUrl + '/login'
     }
     return Promise.reject(error)
   }
