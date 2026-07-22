@@ -11,6 +11,7 @@ import {
   FaUserMd, 
   FaChartBar
 } from 'react-icons/fa'
+import logoImg from '../../assets/images/logo.webp'
 
 const Sidebar = ({ isOpen, onCloseSidebar }) => {
   const role = localStorage.getItem('role') || 'MOTHER'
@@ -52,9 +53,9 @@ const Sidebar = ({ isOpen, onCloseSidebar }) => {
       )}
       
       <aside className={`sidebar-container ${isOpen ? 'show' : ''}`}>
-        <div className="sidebar-logo">
-          <FaHeartbeat className="me-2 text-danger" style={{ verticalAlign: 'middle' }} />
-          <span>MamaHealth</span>
+        <div className="sidebar-logo d-flex align-items-center" style={{ padding: '1rem' }}>
+          <img src={logoImg} alt="MamaHealth" className="me-2" style={{ maxHeight: '32px', objectFit: 'contain' }} />
+          <span style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>MamaHealth</span>
         </div>
         
         <ul className="sidebar-menu">

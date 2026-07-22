@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaHeartbeat, FaEnvelope, FaLock, FaUserPlus } from 'react-icons/fa'
+import { FaEnvelope, FaLock, FaUserPlus } from 'react-icons/fa'
 import API from '../../api.js'
+import logoImg from '../../assets/images/logo.webp'
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -57,9 +58,7 @@ const Signup = () => {
             
             {/* Logo */}
             <div className="mb-4">
-              <div className="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger rounded-circle p-3 mb-2" style={{ width: '70px', height: '70px' }}>
-                <FaHeartbeat size={36} />
-              </div>
+              <img src={logoImg} alt="MamaHealth Logo" className="img-fluid mb-3" style={{ maxHeight: '80px', objectFit: 'contain' }} />
               <h1 className="h3 text-white font-weight-bold" style={{ fontFamily: 'Outfit' }}>MamaHealth</h1>
               <p className="text-muted small">Postpartum Recovery & Monitoring</p>
             </div>

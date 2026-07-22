@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaUsers, FaHeartbeat, FaCalendarAlt, FaPills } from 'react-icons/fa'
+import { FaUsers, FaHeartbeat, FaCalendarAlt, FaPills, FaChartBar } from 'react-icons/fa'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell } from 'recharts'
 import API from '../../api.js'
 import StatCard from '../../components/common/StatCard.jsx'
 
@@ -54,6 +55,14 @@ const DoctorDashboard = () => {
     )
   }
 
+  // Prepare chart data
+  const chartData = stats ? [
+    { name: 'Patients', value: stats.totalMothers || 0, color: '#0ea5e9' },
+    { name: 'Reports', value: stats.recoveryReports || 0, color: '#ef4444' },
+    { name: 'Prescriptions', value: stats.activeMedications || 0, color: '#10b981' },
+    { name: 'Appointments', value: stats.upcomingAppointments || 0, color: '#06b6d4' }
+  ] : []
+
   return (
     <div className="container-fluid">
       
@@ -103,7 +112,44 @@ const DoctorDashboard = () => {
         </div>
       </div>
 
-
+      {/* Chart Section */}
+      <div className="row mb-4">
+        <div className="col-lg-8 col-12">
+          <div className="premium-card h-100">
+            <div className="d-flex align-items-center mb-4">
+              <div className="bg-primary bg-opacity-10 text-primary p-2 rounded-circle me-3">
+                <FaChartBar size={20} />
+              </div>
+              <h5 className="mb-0" style={{ fontFamily: 'Outfit', fontWeight: 600 }}>Workload Overview</h5>
+            </div>
+            
+            <div style={{ height: '350px', width: '100%' }}>
+              {stats ? (
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                    <XAxis dataKey="name" stroke="#64748b" tick={{ fill: '#64748b' }} tickMargin={10} />
+                    <YAxis stroke="#64748b" tick={{ fill: '#64748b' }} allowDecimals={false} />
+                    <RechartsTooltip 
+                      cursor={{ fill: 'rgba(14, 165, 233, 0.05)' }}
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}
+                    />
+                    <Bar dataKey="value" radius={[6, 6, 0, 0]} maxBarSize={60}>
+                      {chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              ) : (
+                <div className="h-100 d-flex align-items-center justify-content-center text-muted">
+                  No data available
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   )

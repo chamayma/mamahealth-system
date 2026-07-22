@@ -4,7 +4,7 @@ import { FaArrowLeft, FaCalendarAlt, FaClock, FaStethoscope, FaHospital, FaStick
 import { toast } from 'react-toastify'
 import API from '../../api.js'
 
-const DoctorAppointmentDetails = () => {
+const DoctorAppointments = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   
@@ -159,4 +159,4 @@ const DoctorAppointmentDetails = () => {
   )
 }
 
-export default DoctorAppointmentDetails
+export default DoctorAppointments

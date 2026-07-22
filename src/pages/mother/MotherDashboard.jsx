@@ -6,8 +6,10 @@ import {
   FaHeartbeat, 
   FaThermometerHalf, 
   FaHospital, 
-  FaExclamationTriangle 
+  FaExclamationTriangle,
+  FaChartLine
 } from 'react-icons/fa'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts'
 import API from '../../api.js'
 import StatCard from '../../components/common/StatCard.jsx'
 
@@ -89,30 +91,12 @@ const MotherDashboard = () => {
   const currentPain = latestRecovery ? latestRecovery.painLevel : 'N/A'
   const currentTemp = latestRecovery ? `${latestRecovery.bodyTemperature}°C` : 'N/A'
 
-  // Prepare chart data
-  const chartData = {
-    labels: recoveryHistory.map(r => r.recordDate),
-    datasets: [
-      {
-        label: 'Pain Level (1-10)',
-        data: recoveryHistory.map(r => r.painLevel),
-        borderColor: '#fd79a8',
-        backgroundColor: 'rgba(253, 121, 168, 0.1)',
-        tension: 0.3,
-        borderWidth: 3,
-        pointBackgroundColor: '#fd79a8',
-      },
-      {
-        label: 'Body Temp (°C)',
-        data: recoveryHistory.map(r => r.bodyTemperature),
-        borderColor: '#6c5ce7',
-        backgroundColor: 'rgba(108, 92, 231, 0.1)',
-        tension: 0.3,
-        borderWidth: 3,
-        pointBackgroundColor: '#6c5ce7',
-      }
-    ]
-  }
+  // Prepare chart data for Recharts
+  const formattedChartData = recoveryHistory.map(r => ({
+    date: new Date(r.recordDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+    painLevel: r.painLevel,
+    bodyTemp: r.bodyTemperature
+  }))
 
   if (loading) {
     return (
@@ -196,7 +180,42 @@ const MotherDashboard = () => {
         </div>
       </div>
 
-
+      {/* Charts Section */}
+      <div className="row mb-4">
+        <div className="col-12">
+          <div className="premium-card">
+            <div className="d-flex align-items-center mb-4">
+              <div className="bg-primary bg-opacity-10 text-primary p-2 rounded-circle me-3">
+                <FaChartLine size={20} />
+              </div>
+              <h5 className="mb-0" style={{ fontFamily: 'Outfit', fontWeight: 600 }}>Recovery Progress Trends</h5>
+            </div>
+            
+            {recoveryHistory.length > 0 ? (
+              <div style={{ height: '350px', width: '100%' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={formattedChartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                    <XAxis dataKey="date" stroke="#64748b" tick={{ fill: '#64748b' }} tickMargin={10} />
+                    <YAxis yAxisId="left" stroke="#64748b" tick={{ fill: '#64748b' }} domain={[0, 10]} label={{ value: 'Pain Level (1-10)', angle: -90, position: 'insideLeft', fill: '#64748b' }} />
+                    <YAxis yAxisId="right" orientation="right" stroke="#64748b" tick={{ fill: '#64748b' }} domain={[35, 42]} label={{ value: 'Temp (°C)', angle: 90, position: 'insideRight', fill: '#64748b' }} />
+                    <RechartsTooltip 
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}
+                    />
+                    <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                    <Line yAxisId="left" type="monotone" dataKey="painLevel" name="Pain Level" stroke="#f43f5e" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} />
+                    <Line yAxisId="right" type="monotone" dataKey="bodyTemp" name="Body Temperature (°C)" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+            ) : (
+              <div className="text-center text-muted p-5 bg-light rounded" style={{ border: '1px dashed #cbd5e1' }}>
+                <p className="mb-0">Log your first daily recovery update to see your progress chart!</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
     </div>
   )
